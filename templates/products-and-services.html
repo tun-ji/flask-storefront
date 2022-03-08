@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="grid-container">
+    <div class="navigation-bar grid-item-row-1">
+        <div class="navigation-bar-left">
+            <div>
+                <a href="/">Home</a>
+            </div>
+            <div>
+                <a href="/products" class="active">Products</a>
+            </div>
+            <div>
+                <a href="/about-us">About Us</a>
+            </div>
+        </div>
+        <div class="navigation-bar-right">
+            <div>
+                <input type="search">
+                <button>Search</button>
+            </div>
+            <div>
+                <a href="/login">Sign in</a>
+            </div>
+        </div>
+    </div>
+    <div class="grid-item-row-2">
+        <!--        <table class="table is-striped is-hoverable ">-->
+        <!--            <thead>-->
+        <!--            <tr>-->
+        <!--                <th>Produce Name</th>-->
+        <!--                <th>Description</th>-->
+        <!--                <th>Photo URL</th>-->
+        <!--                <th>Weight</th>-->
+        <!--                <th>Price (per unit)</th>-->
+        <!--                <th>Quantity</th>-->
+        <!--                <th></th>-->
+        <!--                <th></th>-->
+        <!--                <th></th>-->
+        <!--                <th></th>-->
+        <!--                <th></th>-->
+        <!--                <th></th>-->
+        <!--            </tr>-->
+        <!--            </thead>-->
+        <!--            <tbody>-->
+        <!--            {% for product in produce %}-->
+        <!--            <tr>-->
+        <!--                <td>{{product.Produce_Name}}</td>-->
+        <!--                <td>{{product.Produce_Description}}</td>-->
+        <!--&lt;!&ndash;                <td>{{product.Photo_URL}}<img src = {{product.Photo_URL}}></td>&ndash;&gt;-->
+        <!--                <td><img src = {{product.Photo_URL}} width="100" height="100"></td>-->
+        <!--                <td>{{product.Weight}}</td>-->
+        <!--                <td>{{product.price_per_unit}}</td>-->
+        <!--                <td>{{product.Quantity}}</td>-->
+        <!--            </tr>-->
+        <!--            {% endfor %}-->
+        <!--            </tbody>-->
+        <!--        </table>-->
+    <table>
+            {% for product in produce %}
+            <td>
+                <div class="card">
+                    <div class="card-image">
+                        <figure class="image is-4by3">
+                            <img src={{product.Photo_URL}} alt={{product.Produce_Name}}>
+                        </figure>
+                    </div>
+                    <div class="card-content">
+                        <div class="media">
+                            <div class="media-left">
+                                <figure class="image is-48x48">
+                                    <img src={{product.Photo_URL}} alt={{product.Produce_Name}}>
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <p class="title is-4">Product: {{product.Produce_Name}}</p>
+                                <p class="subtitle is-6">Price: {{product.price_per_unit}}</p>
+                                <p class="subtitle is-6">Quantity: {{product.Quantity}}</p>
+                                <p class="subtitle is-6">Weight: {{product.Weight}}</p>
+                            </div>
+                        </div>
+
+                        <div class="content">
+                            {{product.Produce_Description}}
+                        </div>
+                    </div>
+                </div>
+            </td>
+            {% endfor %}
+    </table>
+
+    </div>
+</div>
+{% endblock %}

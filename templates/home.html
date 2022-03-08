@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="grid-container">
+    <div class="navigation-bar grid-item-row-1">
+        <div class="navigation-bar-left">
+            <div>
+                <a href="/" class="active">Home</a>
+            </div>
+            <div>
+                <a href="/products">Products</a>
+            </div>
+            <div>
+                <a href="/about-us">About Us</a>
+            </div>
+        </div>
+        <div class="navigation-bar-right">
+            <div>
+                <input type="search">
+                <button>Search</button>
+            </div>
+            <div>
+                <a href="/login">Sign in</a>
+            </div>
+        </div>
+    </div>
+    <div class="content-with-background-image grid-item-row-2">
+        <div class="animated-content">
+            <p>Welcome to the {{title}}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

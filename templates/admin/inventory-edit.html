@@ -1,0 +1,97 @@
+{% extends "admin/base.html" %}
+{% block admin %}
+<!-- Using bulma to organize this admin area. See https://bulma.io/documentation/overview/ -->
+<div class="container is-fluid">
+    <!-- notification area begins here -->
+    <div class="notification {{css}}">
+        {{title}}:&nbsp;&nbsp;&nbsp;{{information}}
+    </div>
+    <!-- notification area ends here —>
+    <!-Admin specific menu header begins here. We are using bulma CSS tabs class with is-boxed specifier -->
+    <div class="tabs is-boxed">
+        <ul>
+            <li class="is-active"><a>Produce</a></li>
+            <li><a>Services</a></li>
+            <li><a>Manage Database</a></li>
+        </ul>
+    </div>
+    <!-- Admin specific menu ends here -->
+    <!-- The modal edit form here. Modal is active by default-->
+    <div id="customer-edit" class="is-active modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <form method="post" action="/admin/inventory/process-inventory-edit/{{produce.id}}/">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Edit Product</p>
+                </header>
+                <section class="modal-card-body">
+                    <div class="field">
+                        <label class="label">Product Name</label>
+                        <div class="control">
+                            <input name="Produce_Name" class="input" type="text" value="{{produce.Produce_Name}}" placeholder="Enter name of product"
+                                   maxlength="20" required>
+                        </div>
+                        <p class="help">The Product name should not be more than 20 letters</p>
+                    </div>
+                    <div class="field">
+                        <label class="label">Product Description</label>
+                        <div class="control">
+                            <input name="Produce_Description" class="input" type="text" value="{{produce.Produce_Description}}"
+                                   placeholder="Enter name of product here" maxlength="100" required>
+                        </div>
+                        <p class="help">The Product Name should not be more than 100 characters</p>
+                    </div>
+                    <div class="field">
+                        <label class="label">Photo URL</label>
+                        <div class="control">
+                            <input name="Photo_URL" class="input" type="text" placeholder="Enter URL of Product Photo" value="{{produce.Photo_URL}}"
+                                   maxlength="2083" required>
+                        </div>
+                        <p class="help">Link to Product Image</p>
+                    </div>
+                    <div class="field">
+                        <label class="label">Weight (in KG)</label>
+                        <div class="control">
+                            <input name="Weight" class="input" type="number" placeholder="Enter the weight in KG here" value="{{produce.Weight}}"
+                                   maxlength="20" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Price (per unit)</label>
+                        <div class="control">
+                            <input name="price_per_unit" class="input" type="number" step="0.01" value="{{produce.price_per_unit}}"
+                                   placeholder="Enter product price here" maxlength="20" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Quantity</label>
+                        <div class="control">
+                            <input name="Quantity" class="input" type="integer" value="{{produce.Quantity}}"
+                                   placeholder="Enter available quantity here" maxlength="20" required>
+                        </div>
+                    </div>
+                </section>
+                <footer class="modal-card-foot">
+                    <input type="submit" class="button" value="Submit">
+                    <input class="button" value="Cancel"
+                           onclick="removeIsActiveClassFromElementAndDoHistoryBack('customer-edit')">
+                </footer>
+            </form>
+        </div>
+        <button class="modal-close" aria-label="close"
+                onclick="removeIsActiveClassFromElementAndDoHistoryBack('customer-edit')"></button>
+    </div>
+</div>
+<!-- modal add form ends here -->
+<script>
+ function removeIsActiveClassFromElementAndDoHistoryBack(elementId){
+ var element = document.getElementById(elementId);
+ element.classList.remove("is-active");
+ window.history.go(-1);
+ return false;
+ }
+
+
+
+</script>
+{% endblock%}
